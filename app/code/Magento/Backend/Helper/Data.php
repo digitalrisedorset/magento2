@@ -15,8 +15,6 @@ use Magento\Framework\App\Helper\AbstractHelper;
  */
 class Data extends AbstractHelper
 {
-    const XML_PATH_USE_CUSTOM_ADMIN_URL = 'admin/url/use_custom';
-
     /**
      * @var string
      */

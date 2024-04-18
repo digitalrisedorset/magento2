@@ -6,6 +6,7 @@
 namespace Magento\Store\App\Response;
 
 use Laminas\Uri\Uri;
+use Magento\Backend\App\Area\FrontNameResolver;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -29,9 +30,6 @@ use Magento\Store\Model\StoreManagerInterface;
  */
 class Redirect implements RedirectInterface
 {
-    private const XML_PATH_USE_CUSTOM_ADMIN_URL = 'admin/url/use_custom';
-    private const XML_PATH_CUSTOM_ADMIN_URL = 'admin/url/custom';
-
     /**
      * @var RequestInterface
      */
@@ -260,10 +258,7 @@ class Redirect implements RedirectInterface
      */
     private function isUseCustomAdminUrlEnabled(): bool
     {
-        return $this->scopeConfig->isSetFlag(
-            self::XML_PATH_USE_CUSTOM_ADMIN_URL,
-            ScopeInterface::SCOPE_STORE
-        );
+        return $this->scopeConfig->isSetFlag(FrontNameResolver::XML_PATH_USE_CUSTOM_ADMIN_URL);
     }
 
     /**
@@ -273,10 +268,7 @@ class Redirect implements RedirectInterface
      */
     private function getCustomAdminUrl(): string
     {
-        return $this->scopeConfig->getValue(
-            self::XML_PATH_CUSTOM_ADMIN_URL,
-            ScopeInterface::SCOPE_STORE
-        );
+        return $this->scopeConfig->getValue(FrontNameResolver::XML_PATH_CUSTOM_ADMIN_URL);
     }
 
     /**
